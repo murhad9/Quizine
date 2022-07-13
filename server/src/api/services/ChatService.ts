@@ -17,13 +17,12 @@ export class ChatService {
      * @param {http.Server} server - The server to connect to.
     */
     public init(server: socketIO.Server): void {
-        console.log('ChatService');
         this.socketServer = server;
         this.socketServer.on('connection', (currentSocket: socketIO.Socket) => {
             currentSocket.on('sendUsername', (info: any)=>{
                 this.usernameMap.set(currentSocket.id, info['username']);
                 // For debugging purposes
-                // console.log('Username : '+info['username']);
+                console.log('Username : '+info['username']);
                 // const global = require('../../global');
                 // console.log('User List : '+global);
             });
